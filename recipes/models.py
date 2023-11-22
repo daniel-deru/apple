@@ -62,7 +62,7 @@ class Nutrient(models.Model):
     total = models.FloatField()
     daily = models.FloatField()
     unit = models.CharField(max_length=255)
-    recipe = models.ForeignKey(Recipe)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     
 
 class SubNutrient(models.Model):
@@ -70,7 +70,7 @@ class SubNutrient(models.Model):
     total = models.FloatField()
     daily = models.FloatField()
     unit = models.CharField(max_length=255)
-    nutrient = models.ForeignKey(Nutrient)
+    nutrient = models.ForeignKey(Nutrient, on_delete=models.CASCADE)
     
 class IngredientCategory(models.Model):
     category = models.CharField(max_length=255)
@@ -82,10 +82,10 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=255)
     text = models.TextField()
     quantity = models.FloatField()
-    measure = models.CharField()
+    measure = models.CharField(max_length=255)
     weight = models.FloatField()
     
-    category = models.OneToOneField(IngredientCategory)
+    category = models.OneToOneField(IngredientCategory, on_delete=models.CASCADE)
     
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     
